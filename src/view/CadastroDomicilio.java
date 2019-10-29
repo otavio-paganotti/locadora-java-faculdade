@@ -5,27 +5,74 @@
  */
 package view;
 
+import controle.ControleDomicilio;
+import controle.ControleTeclado;
+import java.awt.Dimension;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import modelo.Domicilio;
+
 /**
  *
- * @author 05213516181
+ * @author carloszampieri
  */
-public class CadastroDomicilio extends javax.swing.JFrame {
-
+public class CadastroDomicilio extends javax.swing.JFrame
+{
+    private ControleTeclado cTeclado;
+    private ControleDomicilio cDomicilio;
     /**
      * Creates new form CadastroDomicilio
      */
     public CadastroDomicilio() {
         initComponents();
-        limpar();
+        this.limpar();
+        this.jButtonEditar.setEnabled(false);
+        this.cTeclado = new ControleTeclado();
+        this.cDomicilio = new ControleDomicilio();
     }
     
-    public void limpar() {
-        this.jTextField1Complemento.setText("");
-        this.jTextField1Estado.setText("");
-        this.jTextField2Cidade.setText("");
-        this.jTextField4Logradouro.setText("");
-        this.jTextField5Numero.setText("");
-        this.jTextField3Bairro.setText("");
+    private void limpar()
+    {
+        this.textFieldBairro.setText("");
+        this.textFieldCidade.setText("");
+        this.textFieldComplemento.setText("");
+        this.textFieldEstado.setText("");
+        this.textFieldLogradouro.setText("");
+        this.textFieldNumero.setText("");
+        this.jCheckBoxPrincipal.setSelected(false);
+    }
+    
+    private void travar(boolean flag)
+    {
+        this.textFieldBairro.setEnabled(!flag);
+        this.textFieldCidade.setEnabled(!flag);
+        this.textFieldComplemento.setEnabled(!flag);
+        this.textFieldEstado.setEnabled(!flag);
+        this.textFieldLogradouro.setEnabled(!flag);
+        this.textFieldNumero.setEnabled(!flag);
+        this.jCheckBoxPrincipal.setEnabled(!flag);
+    }
+    
+    private boolean preenchido()
+    {
+        return !(this.textFieldLogradouro.getText().equals("")||
+                this.textFieldNumero.getText().equals("")||
+                this.textFieldNumero.getText().equals("")||
+                this.textFieldBairro.getText().equals("")||
+                this.textFieldCidade.getText().equals("")||
+                this.textFieldEstado.getText().equals("")||
+                this.textFieldComplemento.getText().equals(""));
+    }
+    
+    private void carregarDomicilio(Domicilio d)
+    {
+        this.textFieldBairro.setText(d.getBairro());
+        this.textFieldCidade.setText(d.getCidade());
+        this.textFieldComplemento.setText(d.getComplemento());
+        this.textFieldEstado.setText(d.getEstado());
+        this.textFieldLogradouro.setText(d.getLogradouro());
+        this.textFieldNumero.setText(String.valueOf(d.getNumero()));
+        this.jCheckBoxPrincipal.setSelected(d.ehPrincipal());
     }
 
     /**
@@ -43,16 +90,23 @@ public class CadastroDomicilio extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        textFieldEstado = new javax.swing.JTextField();
+        textFieldCidade = new javax.swing.JTextField();
+        textFieldBairro = new javax.swing.JTextField();
+        textFieldLogradouro = new javax.swing.JTextField();
+        textFieldNumero = new javax.swing.JTextField();
+        jCheckBoxPrincipal = new javax.swing.JCheckBox();
         jLabel6 = new javax.swing.JLabel();
-        jTextField1Estado = new javax.swing.JTextField();
-        jTextField2Cidade = new javax.swing.JTextField();
-        jTextField3Bairro = new javax.swing.JTextField();
-        jTextField4Logradouro = new javax.swing.JTextField();
-        jTextField5Numero = new javax.swing.JTextField();
-        jTextField1Complemento = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        textFieldComplemento = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        jButtonSalvar = new javax.swing.JButton();
+        jButtonExcluir = new javax.swing.JButton();
+        jButtonBuscar = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Cadastro de Domicílio");
         getContentPane().setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setText("Estado");
@@ -88,6 +142,56 @@ public class CadastroDomicilio extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel5, gridBagConstraints);
 
+        textFieldEstado.setText("jTextField1");
+        textFieldEstado.setPreferredSize(new java.awt.Dimension(300, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(textFieldEstado, gridBagConstraints);
+
+        textFieldCidade.setText("jTextField2");
+        textFieldCidade.setPreferredSize(new java.awt.Dimension(300, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(textFieldCidade, gridBagConstraints);
+
+        textFieldBairro.setText("jTextField3");
+        textFieldBairro.setPreferredSize(new java.awt.Dimension(300, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(textFieldBairro, gridBagConstraints);
+
+        textFieldLogradouro.setText("jTextField4");
+        textFieldLogradouro.setPreferredSize(new java.awt.Dimension(300, 40));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(textFieldLogradouro, gridBagConstraints);
+
+        textFieldNumero.setText("jTextField5");
+        textFieldNumero.setPreferredSize(new java.awt.Dimension(300, 40));
+        textFieldNumero.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                textFieldNumeroKeyTyped(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 4;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        getContentPane().add(textFieldNumero, gridBagConstraints);
+
+        jCheckBoxPrincipal.setText("Principal");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 2;
+        getContentPane().add(jCheckBoxPrincipal, gridBagConstraints);
+
         jLabel6.setText("Complemento");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -95,89 +199,173 @@ public class CadastroDomicilio extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         getContentPane().add(jLabel6, gridBagConstraints);
 
-        jTextField1Estado.setText("jTextField1");
-        jTextField1Estado.setPreferredSize(new java.awt.Dimension(99, 20));
-        jTextField1Estado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1EstadoActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        getContentPane().add(jTextField1Estado, gridBagConstraints);
-
-        jTextField2Cidade.setText("jTextField2");
-        jTextField2Cidade.setPreferredSize(new java.awt.Dimension(99, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        getContentPane().add(jTextField2Cidade, gridBagConstraints);
-
-        jTextField3Bairro.setText("jTextField3");
-        jTextField3Bairro.setPreferredSize(new java.awt.Dimension(99, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        getContentPane().add(jTextField3Bairro, gridBagConstraints);
-
-        jTextField4Logradouro.setText("jTextField4");
-        jTextField4Logradouro.setPreferredSize(new java.awt.Dimension(99, 20));
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        getContentPane().add(jTextField4Logradouro, gridBagConstraints);
-
-        jTextField5Numero.setText("jTextField5");
-        jTextField5Numero.setPreferredSize(new java.awt.Dimension(99, 20));
-        jTextField5Numero.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField5NumeroKeyTyped(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        getContentPane().add(jTextField5Numero, gridBagConstraints);
-
-        jTextField1Complemento.setText("jTextField1");
-        jTextField1Complemento.setPreferredSize(new java.awt.Dimension(99, 20));
+        textFieldComplemento.setText("jTextField1");
+        textFieldComplemento.setPreferredSize(new java.awt.Dimension(300, 40));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        getContentPane().add(jTextField1Complemento, gridBagConstraints);
+        getContentPane().add(textFieldComplemento, gridBagConstraints);
 
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText("Principal");
+        jButtonSalvar.setText("Salvar");
+        jButtonSalvar.setPreferredSize(new java.awt.Dimension(93, 30));
+        jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSalvarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonSalvar);
+
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.setPreferredSize(new java.awt.Dimension(93, 30));
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonExcluir);
+
+        jButtonBuscar.setText("Buscar");
+        jButtonBuscar.setPreferredSize(new java.awt.Dimension(93, 30));
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonBuscar);
+
+        jButtonEditar.setText("Editar");
+        jButtonEditar.setPreferredSize(new java.awt.Dimension(93, 30));
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonEditar);
+
+        jButtonCancelar.setText("Cancelar");
+        jButtonCancelar.setPreferredSize(new java.awt.Dimension(93, 30));
+        jButtonCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButtonCancelar);
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        gridBagConstraints.gridwidth = 2;
-        getContentPane().add(jCheckBox1, gridBagConstraints);
+        gridBagConstraints.gridy = 8;
+        gridBagConstraints.gridwidth = 3;
+        getContentPane().add(jPanel1, gridBagConstraints);
+
+        getAccessibleContext().setAccessibleDescription("Cadastro de Domicílio");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1EstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1EstadoActionPerformed
+    private void textFieldNumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldNumeroKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1EstadoActionPerformed
+        textFieldNumero.setText(this.cTeclado.mascaraNumeros(textFieldNumero.getText(),evt.getKeyChar()));
+        evt.consume();
+    }//GEN-LAST:event_textFieldNumeroKeyTyped
 
-    private void jTextField5NumeroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5NumeroKeyTyped
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         // TODO add your handling code here:
-        String numeros = "0123456789";
-        String c = String.valueOf(evt.getKeyChar());
-        if (!numeros.contains(c)) {
-            String txt = this.jTextField5Numero.getText();
-            txt = txt.split(c)[0];
-            this.jTextField5Numero.setText(txt);
-            evt.consume();
+        Domicilio achou = cDomicilio.getDomicilio(this.textFieldLogradouro.getText(),
+                Integer.parseInt(this.textFieldNumero.getText().equals("")?"0":this.textFieldNumero.getText()),
+                this.textFieldBairro.getText(),
+                this.textFieldCidade.getText(),
+                this.textFieldEstado.getText(),
+                this.textFieldComplemento.getText());
+        if (achou==null)
+        {
+            JOptionPane.showMessageDialog(this,"Domicílio não encontrado");
+            this.jButtonEditar.setEnabled(false);
         }
-        
-    }//GEN-LAST:event_jTextField5NumeroKeyTyped
+        else
+        {
+            this.carregarDomicilio(achou);
+            this.travar(true);
+            JOptionPane.showMessageDialog(this,"Domicílio encontrado");
+            this.jButtonEditar.setEnabled(true);
+            this.jButtonEditar.setFocusable(true);
+            this.jButtonBuscar.setEnabled(false);
+            this.jButtonSalvar.setEnabled(false);
+        }
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
+        // TODO add your handling code here:
+        if (this.preenchido())
+        {
+            this.cDomicilio.adicionar(new Domicilio(this.jCheckBoxPrincipal.isSelected(),
+                this.textFieldLogradouro.getText(),
+                Integer.parseInt(this.textFieldNumero.getText().equals("")?"0":this.textFieldNumero.getText()),
+                this.textFieldBairro.getText(),
+                this.textFieldCidade.getText(),
+                this.textFieldEstado.getText(),
+                this.textFieldComplemento.getText()));
+                JOptionPane.showMessageDialog(this,"Gravado com sucesso");
+                this.limpar();
+                this.jButtonEditar.setEnabled(false);
+                this.jButtonBuscar.setEnabled(true);
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"Preencha todos os campos");
+        }
+    }//GEN-LAST:event_jButtonSalvarActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        // TODO add your handling code here:
+        this.travar(false);
+        this.jButtonEditar.setEnabled(false);
+        this.jButtonSalvar.setEnabled(true);
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
+        // TODO add your handling code here:
+        this.travar(false);
+        this.jButtonEditar.setEnabled(false);
+        this.jButtonSalvar.setEnabled(true);
+        this.jButtonBuscar.setEnabled(true);
+        this.limpar();
+    }//GEN-LAST:event_jButtonCancelarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        // TODO add your handling code here:
+        Domicilio achou = cDomicilio.getDomicilio(this.textFieldLogradouro.getText(),
+                Integer.parseInt(this.textFieldNumero.getText().equals("")?"0":this.textFieldNumero.getText()),
+                this.textFieldBairro.getText(),
+                this.textFieldCidade.getText(),
+                this.textFieldEstado.getText(),
+                this.textFieldComplemento.getText());
+        if (achou==null)
+        {
+            JOptionPane.showMessageDialog(this,"Domicílio não encontrado");
+            this.jButtonBuscar.setEnabled(true);
+            this.travar(false);
+        }
+        else
+        {
+            if (cDomicilio.remover(achou))
+            {
+                JOptionPane.showMessageDialog(this,"Domicílio removido");
+                this.jButtonEditar.setEnabled(false);
+                this.limpar();
+                this.travar(false);
+                this.jButtonBuscar.setEnabled(true);
+                this.jButtonSalvar.setEnabled(true);
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(this,"Domicílio não removido");
+                this.travar(false);
+                this.jButtonBuscar.setEnabled(true);
+                this.jButtonSalvar.setEnabled(true);
+            }
+        }
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,18 +403,24 @@ public class CadastroDomicilio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonEditar;
+    private javax.swing.JButton jButtonExcluir;
+    private javax.swing.JButton jButtonSalvar;
+    private javax.swing.JCheckBox jCheckBoxPrincipal;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1Complemento;
-    private javax.swing.JTextField jTextField1Estado;
-    private javax.swing.JTextField jTextField2Cidade;
-    private javax.swing.JTextField jTextField3Bairro;
-    private javax.swing.JTextField jTextField4Logradouro;
-    private javax.swing.JTextField jTextField5Numero;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField textFieldBairro;
+    private javax.swing.JTextField textFieldCidade;
+    private javax.swing.JTextField textFieldComplemento;
+    private javax.swing.JTextField textFieldEstado;
+    private javax.swing.JTextField textFieldLogradouro;
+    private javax.swing.JTextField textFieldNumero;
     // End of variables declaration//GEN-END:variables
 }

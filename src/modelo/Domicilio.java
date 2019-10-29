@@ -7,27 +7,17 @@ package modelo;
 
 /**
  *
- * @author 05213516181
+ * @author carloszampieri
  */
-public class Domicilio {
+public class Domicilio
+{
     private boolean principal;
     private String logradouro;
     private int numero;
     private String bairro;
-    private String estado;
     private String cidade;
+    private String estado;
     private String complemento;
-
-
-    public Domicilio(boolean principal, String logradouro, int numero, String bairro, String estado, String cidade, String complemento) {
-        this.principal = principal;
-        this.logradouro = logradouro;
-        this.numero = numero;
-        this.bairro = bairro;
-        this.estado = estado;
-        this.cidade = cidade;
-        this.complemento = complemento;
-    }
 
     public String getComplemento() {
         return complemento;
@@ -36,8 +26,22 @@ public class Domicilio {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
+
+    public Domicilio(boolean principal, String logradouro, 
+        int numero, String bairro, String cidade, 
+        String estado,String complemento)
+    {
+        this.principal = principal;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.estado = estado;
+        this.complemento = complemento;
+    }
     
-    public boolean ehPrincipal() {
+    public boolean ehPrincipal()
+    {
         return this.principal;
     }
 
@@ -69,14 +73,6 @@ public class Domicilio {
         this.bairro = bairro;
     }
 
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
     public String getCidade() {
         return cidade;
     }
@@ -84,6 +80,35 @@ public class Domicilio {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
     
+    public boolean igual(Domicilio d)
+    {
+        return (
+                this.logradouro.equals(d.getLogradouro())&&
+                this.numero==d.getNumero()&&
+                this.bairro.equals(d.getBairro())&&
+                this.cidade.equals(d.getCidade())&&
+                this.estado.equals(d.getEstado())&&
+                this.complemento.equals(d.getComplemento())
+               );
+    }
     
+    public void setDomicilio(Domicilio d)
+    {
+        this.principal = d.ehPrincipal();
+        this.logradouro = d.getLogradouro();
+        this.numero = d.getNumero();
+        this.bairro = d.getBairro();
+        this.cidade = d.getCidade();
+        this.estado = d.getEstado();
+        this.complemento = d.getComplemento();
+    }
 }

@@ -9,24 +9,29 @@ import java.util.ArrayList;
 
 /**
  *
- * @author 05213516181
+ * @author carloszampieri
  */
-public class Funcionario extends Cliente {
-    private String numeroCarteiraTrabalho;
+public class Funcionario extends Cliente
+{
+    private String carteiraTrabalho;
     private String pisPasep;
 
-    public Funcionario(String numeroCarteiraTrabalho, String pisPasep, String rg, String cpf, String nome, int numPessoa, String telefone, String email, ArrayList<Domicilio> endereco) {
-        super(rg, cpf, nome, numPessoa, telefone, email, endereco);
-        this.numeroCarteiraTrabalho = numeroCarteiraTrabalho;
+    public Funcionario(String carteiraTrabalho, String pisPasep, 
+            String rg, String cpf, int numPessoa, String nome, 
+            String telefone, String email, 
+            ArrayList<Domicilio> endereco)
+    {
+        super(rg, cpf, numPessoa, nome, telefone, email, endereco);
+        this.carteiraTrabalho = carteiraTrabalho;
         this.pisPasep = pisPasep;
     }
 
-    public String getNumeroCarteiraTrabalho() {
-        return numeroCarteiraTrabalho;
+    public String getCarteiraTrabalho() {
+        return carteiraTrabalho;
     }
 
-    public void setNumeroCarteiraTrabalho(String numeroCarteiraTrabalho) {
-        this.numeroCarteiraTrabalho = numeroCarteiraTrabalho;
+    public void setCarteiraTrabalho(String carteiraTrabalho) {
+        this.carteiraTrabalho = carteiraTrabalho;
     }
 
     public String getPisPasep() {
@@ -36,7 +41,5 @@ public class Funcionario extends Cliente {
     public void setPisPasep(String pisPasep) {
         this.pisPasep = pisPasep;
     }
-    
-    
     
 }

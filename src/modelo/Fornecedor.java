@@ -9,13 +9,16 @@ import java.util.ArrayList;
 
 /**
  *
- * @author 05213516181
+ * @author carloszampieri
  */
-public class Fornecedor extends Pessoa {
-    private String cnpj;    
+public class Fornecedor extends Pessoa
+{
+    private String cnpj;
 
-    public Fornecedor(String cnpj, String nome, int numPessoa, String telefone, String email, ArrayList<Domicilio> endereco) {
-        super(nome, numPessoa, telefone, email, endereco);
+    public Fornecedor(String cnpj, int numPessoa, String nome,
+            String telefone, String email, ArrayList<Domicilio> endereco)
+    {
+        super(numPessoa, nome, telefone, email, endereco);
         this.cnpj = cnpj;
     }
 
@@ -26,4 +29,5 @@ public class Fornecedor extends Pessoa {
     public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
+    
 }

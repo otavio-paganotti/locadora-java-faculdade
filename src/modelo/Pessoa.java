@@ -9,22 +9,29 @@ import java.util.ArrayList;
 
 /**
  *
- * @author 05213516181
+ * @author carloszampieri
  */
-public abstract class Pessoa {
-    private String nome;
+public abstract class Pessoa
+{
     private int numPessoa;
+    private String nome;
     private String telefone;
     private String email;
     private ArrayList<Domicilio> endereco = null;
     
-        
-    public Pessoa(String nome, int numPessoa, String telefone, String email, ArrayList<Domicilio> endereco) {
-        this.nome = nome;
+    public Pessoa(int numPessoa,String nome,
+            String telefone,String email,
+            ArrayList<Domicilio> endereco)
+    {
         this.numPessoa = numPessoa;
+        this.nome = nome;
         this.telefone = telefone;
         this.email = email;
         this.endereco = endereco;
+    }
+
+    public int getNumPessoa() {
+        return numPessoa;
     }
 
     public String getNome() {
@@ -33,10 +40,6 @@ public abstract class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public int getNumPessoa() {
-        return numPessoa;
     }
 
     public String getTelefone() {
@@ -55,41 +58,62 @@ public abstract class Pessoa {
         this.email = email;
     }
 
-    public Domicilio getEndereco(int index) {
+    public ArrayList<Domicilio> getEndereco() {
+        return endereco;
+    }
+    
+    public Domicilio getEndereco(int index)
+    {        
         return this.endereco.get(index);
     }
     
-    public Domicilio getEnderecoPrincipal() {
-        for (Domicilio d:this.endereco) {
-            if (d.ehPrincipal()) {
+    public Domicilio getEnderecoPrincipal()
+    {        
+        for (Domicilio d:this.endereco)
+        {
+            if (d.ehPrincipal())
+            {
                 return d;
             }
         }
         return null;
     }
 
-    public void setEndereco(Domicilio novo, int index) {
-        if (index >= 0 && index < this.endereco.size()) {
-            if (novo.ehPrincipal()) {
-                for (int i = 0; i < this.endereco.size(); i++) {
-                    if (i != index && this.endereco.get(i).ehPrincipal()) {
+    public void setEndereco(Domicilio novo,int index)
+    {
+        if (index>=0 && index<this.endereco.size())
+        {
+            if (novo.ehPrincipal())
+            {
+                for (int i=0;i<this.endereco.size();i++)
+                {
+                    if (i!=index && 
+                         this.endereco.get(i).ehPrincipal())
+                    {
                         this.endereco.get(i).setPrincipal(false);
                         break;
                     }
                 }
             }
-            this.endereco.set(index, novo);
+            this.endereco.set(index,novo);
         }
     }
     
-    public boolean adicionarEndereco(Domicilio novo) {
-        if (this.endereco.contains(novo)) {
-            this.setEndereco(novo, this.endereco.indexOf(novo));
+    public boolean adicionarEndereco(Domicilio novo)
+    {
+        if (this.endereco.contains(novo))
+        {
+            this.setEndereco(novo,
+                    this.endereco.indexOf(novo));
             return true;
-        } else if (novo.ehPrincipal()) {
-            for (int i = 0; i < this.endereco.size(); i++) {
+        }
+        else if (novo.ehPrincipal())
+        {
+            for (int i=0;i<this.endereco.size();i++)
+            {
                 
-                if (this.endereco.get(i).ehPrincipal()) {
+                if (this.endereco.get(i).ehPrincipal())
+                {
                     this.endereco.get(i).setPrincipal(false);
                     break;
                 }
@@ -99,5 +123,4 @@ public abstract class Pessoa {
         }
         return false;
     }
-    
 }

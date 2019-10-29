@@ -9,17 +9,18 @@ import java.util.ArrayList;
 
 /**
  *
- * @author 05213516181
+ * @author carloszampieri
  */
-public class Cliente extends Pessoa {
+public class Cliente extends Pessoa
+{
     private String rg;
     private String cpf;
 
-    public Cliente(String rg, String cpf, String nome, int numPessoa, String telefone, String email, ArrayList<Domicilio> endereco) {
-        super(nome, numPessoa, telefone, email, endereco);
+    public Cliente(String rg, String cpf, int numPessoa, String nome, String telefone, String email, ArrayList<Domicilio> endereco) {
+        super(numPessoa, nome, telefone, email, endereco);
         this.rg = rg;
         this.cpf = cpf;
-    }
+    } 
 
     public String getRg() {
         return rg;
@@ -36,5 +37,4 @@ public class Cliente extends Pessoa {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
 }

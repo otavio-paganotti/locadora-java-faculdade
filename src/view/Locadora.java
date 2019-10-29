@@ -7,7 +7,7 @@ package view;
 
 /**
  *
- * @author 05213516181
+ * @author carloszampieri
  */
 public class Locadora extends javax.swing.JFrame {
 
