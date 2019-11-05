@@ -5,6 +5,8 @@
  */
 package controle;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.Domicilio;
 
@@ -15,9 +17,11 @@ import modelo.Domicilio;
 public class ControleDomicilio
 {
     private ArrayList<Domicilio> listaDomicilio;
+    private BancoDados bd;
     
-    public ControleDomicilio()
+    public ControleDomicilio(BancoDados bd)
     {
+        this.bd = bd;
         this.listaDomicilio = new ArrayList<Domicilio>();
     }
     public Domicilio getDomicilio(String logradouro,int numero,String bairro, String cidade,String estado,String complemento)
@@ -50,6 +54,15 @@ public class ControleDomicilio
     
     public void adicionar(Domicilio nova)
     {
+        this.bd.insertSQL(nova.getSql());
+        try {
+            ResultSet rs = this.bd.querySQL("SELECT * FROM Domicilio");
+            while (rs.next()) {
+                System.out.println("Logradouro: " +  rs.getString("logradouro") + " - Cidade: " + rs.getString("cidade"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         this.removePrincipal(nova);
         if (!this.listaDomicilio.contains(nova))
         {

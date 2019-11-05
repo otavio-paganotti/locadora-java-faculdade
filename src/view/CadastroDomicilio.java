@@ -5,6 +5,7 @@
  */
 package view;
 
+import controle.BancoDados;
 import controle.ControleDomicilio;
 import controle.ControleTeclado;
 import javax.swing.JOptionPane;
@@ -21,12 +22,12 @@ public class CadastroDomicilio extends javax.swing.JFrame
     /**
      * Creates new form CadastroDomicilio
      */
-    public CadastroDomicilio() {
+    public CadastroDomicilio(BancoDados bd) {
         initComponents();
         this.limpar();
         this.jButtonEditar.setEnabled(false);
         this.cTeclado = new ControleTeclado();
-        this.cDomicilio = new ControleDomicilio();
+        this.cDomicilio = new ControleDomicilio(bd);
     }
     
     private void limpar()
@@ -392,13 +393,18 @@ public class CadastroDomicilio extends javax.swing.JFrame
             java.util.logging.Logger.getLogger(CadastroDomicilio.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+        BancoDados bd = new  BancoDados("jdbc:mysql://localhost/bancoLocadora","root","root");
+        bd.criarConexao();
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CadastroDomicilio().setVisible(true);
+                CadastroDomicilio cd = new CadastroDomicilio(bd);
+                cd.setVisible(true);
             }
         });
+        bd.fecharConexao();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

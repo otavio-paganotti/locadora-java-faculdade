@@ -18,6 +18,17 @@ public class Domicilio
     private String cidade;
     private String estado;
     private String complemento;
+    
+    public String getSql() {
+        return "INSERT INTO DOMICILIO (logradouro,numero,bairro,cidade,estado,complemento) VALUES ("
+                + "'"+this.logradouro+"',"
+                + this.numero+","
+                + "'" + this.bairro + "',"
+                + "'" + this.cidade + "',"
+                + "'" + this.estado + "',"
+                + "'" + this.complemento + "'"
+                + ")";
+    }
 
     public String getComplemento() {
         return complemento;

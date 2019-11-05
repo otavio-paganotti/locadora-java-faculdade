@@ -21,13 +21,6 @@ public class Locadora extends javax.swing.JFrame {
      */
     public Locadora() {
         initComponents();
-        
-        this.bd = new BancoDados("jdbc:mysql://localhost/bancoLocadora","root","roo2t");
-        if (!this.bd.criarConexao()) {
-            this.JMenuCadastros.setEnabled(false);
-            this.jMenuAjuda.setEnabled(false);
-            JOptionPane.showMessageDialog(this,"Sem conexão com o Banco de Dados");
-        }
     }
 
     /**
@@ -43,9 +36,15 @@ public class Locadora extends javax.swing.JFrame {
         JMenuCadastros = new javax.swing.JMenu();
         jMenuItemDomicilio = new javax.swing.JMenuItem();
         jMenuAjuda = new javax.swing.JMenu();
+        jMenuItemSobre = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Locadora");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         JMenuCadastros.setText("Cadastros");
 
@@ -61,6 +60,10 @@ public class Locadora extends javax.swing.JFrame {
         jMenuBarPrincipal.add(JMenuCadastros);
 
         jMenuAjuda.setText("Ajuda");
+
+        jMenuItemSobre.setText("Sobre");
+        jMenuAjuda.add(jMenuItemSobre);
+
         jMenuBarPrincipal.add(jMenuAjuda);
 
         setJMenuBar(jMenuBarPrincipal);
@@ -83,8 +86,18 @@ public class Locadora extends javax.swing.JFrame {
 
     private void jMenuItemDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDomicilioActionPerformed
         // TODO add your handling code here:
-        CadastroDomicilio domicilio = new CadastroDomicilio();
+        CadastroDomicilio domicilio = new CadastroDomicilio(this.bd);
+        domicilio.setVisible(true);
     }//GEN-LAST:event_jMenuItemDomicilioActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        this.bd = new BancoDados("jdbc:mysql://localhost/bancoLocadora","root","root");
+        if (!this.bd.criarConexao()) {
+            this.JMenuCadastros.setEnabled(false);
+            JOptionPane.showMessageDialog(this,"Sem conexão com o Banco de Dados");
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -126,5 +139,6 @@ public class Locadora extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuAjuda;
     private javax.swing.JMenuBar jMenuBarPrincipal;
     private javax.swing.JMenuItem jMenuItemDomicilio;
+    private javax.swing.JMenuItem jMenuItemSobre;
     // End of variables declaration//GEN-END:variables
 }
