@@ -123,4 +123,14 @@ public abstract class Pessoa
         }
         return false;
     }
+    
+    public boolean igual(Pessoa p)
+    {
+        return (numPessoa==p.getNumPessoa()&&
+                nome.equals(p.getNome())&&
+                telefone.equals(p.getTelefone())&&
+                email.equals(p.getEmail()));
+    }
+    
+    public abstract void setPessoa(Pessoa p);
 }

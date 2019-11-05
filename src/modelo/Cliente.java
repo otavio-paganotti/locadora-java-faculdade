@@ -20,7 +20,26 @@ public class Cliente extends Pessoa
         super(numPessoa, nome, telefone, email, endereco);
         this.rg = rg;
         this.cpf = cpf;
-    } 
+    }
+    
+    public boolean igual(Pessoa p)
+    {
+        Cliente cli = (Cliente)p;
+        return (
+                this.cpf.equals(cli.getCpf())&&
+                this.rg.equals(cli.getRg())&&
+                super.igual(cli)
+               );
+    }
+    
+    public void setPessoa(Pessoa p)
+    {
+        this.cpf = ((Cliente)p).getCpf();
+        this.rg = ((Cliente)p).getRg();
+        this.setNome(p.getNome());
+        this.setEmail(p.getEmail());
+        this.setTelefone(p.getTelefone());
+    }
 
     public String getRg() {
         return rg;

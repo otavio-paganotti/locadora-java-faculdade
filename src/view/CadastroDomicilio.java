@@ -7,8 +7,6 @@ package view;
 
 import controle.ControleDomicilio;
 import controle.ControleTeclado;
-import java.awt.Dimension;
-import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import modelo.Domicilio;
 
@@ -305,6 +303,7 @@ public class CadastroDomicilio extends javax.swing.JFrame
                 this.textFieldCidade.getText(),
                 this.textFieldEstado.getText(),
                 this.textFieldComplemento.getText()));
+            
                 JOptionPane.showMessageDialog(this,"Gravado com sucesso");
                 this.limpar();
                 this.jButtonEditar.setEnabled(false);

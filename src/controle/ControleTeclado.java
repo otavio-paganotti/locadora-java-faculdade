@@ -20,7 +20,7 @@ public class ControleTeclado
         if (!numeros.contains(t))
         {
             String txt = text;
-            txt = txt.split(t)[0];
+            txt = txt.replace(t,"");
             return txt;
         }
         return text+t;
