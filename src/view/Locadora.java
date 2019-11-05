@@ -5,17 +5,29 @@
  */
 package view;
 
+import controle.BancoDados;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author carloszampieri
  */
 public class Locadora extends javax.swing.JFrame {
-
+    
+    private BancoDados bd;
+    
     /**
      * Creates new form Locadora
      */
     public Locadora() {
         initComponents();
+        
+        this.bd = new BancoDados("jdbc:mysql://localhost/bancoLocadora","root","roo2t");
+        if (!this.bd.criarConexao()) {
+            this.JMenuCadastros.setEnabled(false);
+            this.jMenuAjuda.setEnabled(false);
+            JOptionPane.showMessageDialog(this,"Sem conexão com o Banco de Dados");
+        }
     }
 
     /**
@@ -27,8 +39,31 @@ public class Locadora extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBarPrincipal = new javax.swing.JMenuBar();
+        JMenuCadastros = new javax.swing.JMenu();
+        jMenuItemDomicilio = new javax.swing.JMenuItem();
+        jMenuAjuda = new javax.swing.JMenu();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Locadora");
+
+        JMenuCadastros.setText("Cadastros");
+
+        jMenuItemDomicilio.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_D, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemDomicilio.setText("Cadastro Domicílio");
+        jMenuItemDomicilio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDomicilioActionPerformed(evt);
+            }
+        });
+        JMenuCadastros.add(jMenuItemDomicilio);
+
+        jMenuBarPrincipal.add(JMenuCadastros);
+
+        jMenuAjuda.setText("Ajuda");
+        jMenuBarPrincipal.add(jMenuAjuda);
+
+        setJMenuBar(jMenuBarPrincipal);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -38,13 +73,18 @@ public class Locadora extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         getAccessibleContext().setAccessibleDescription("Locadora");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItemDomicilioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDomicilioActionPerformed
+        // TODO add your handling code here:
+        CadastroDomicilio domicilio = new CadastroDomicilio();
+    }//GEN-LAST:event_jMenuItemDomicilioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -82,5 +122,9 @@ public class Locadora extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu JMenuCadastros;
+    private javax.swing.JMenu jMenuAjuda;
+    private javax.swing.JMenuBar jMenuBarPrincipal;
+    private javax.swing.JMenuItem jMenuItemDomicilio;
     // End of variables declaration//GEN-END:variables
 }

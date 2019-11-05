@@ -27,7 +27,7 @@ public class BancoDados
     {
         this.caminhoBanco = "jdbc:mysql://localhost/bd_teste";
         this.login = "root";
-        this.senha = "admin";
+        this.senha = "root";
         this.conexao = null;
         this.comando = null;
     }
@@ -117,7 +117,7 @@ public class BancoDados
     
     public static void main(String[] args)
     {
-        BancoDados bd = new BancoDados("jdbc:mysql://localhost/bancoLocadora","root","admin12345");
+        BancoDados bd = new BancoDados("jdbc:mysql://localhost/bancoLocadora","root","root");
         bd.criarConexao();
         bd.deleteSQL("DELETE FROM Categoria");
         bd.insertSQL("INSERT INTO Categoria (nome, observacao) VALUES ('Moto', 'moto simples')");
