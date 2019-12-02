@@ -24,30 +24,28 @@ public class CadastroPedidos {
         this.bd = bd;
     }
     
-    public void adicionarPedido(Pedido pedido) {
+    public CadastroPedidos() {
+        this.listaPedidos = new ArrayList<Pedido>();
+        this.bd = new BancoDados();
+    }
+    
+    public boolean adicionarPedido(Pedido pedido) {
         this.bd.criarConexao();
-        ResultSet resultCliente = this.bd.querySQL("SELECT * FROM cliente WHERE nome = " + pedido.getCliente().getNome());
-        ResultSet resultFuncionario = this.bd.querySQL("SELECT * FROM cliente WHERE nome = " + pedido.getFuncionario().getNome());
-        ResultSet resultProduto = this.bd.querySQL("SELECT * FROM produto WHERE nome = " + pedido.getProduto().getNome());
-        if (resultCliente != null && resultFuncionario != null && resultProduto != null) {
-            try {
-                this.bd.insertSQL(pedido.getSql(resultCliente.getInt("idPessoa"), resultFuncionario.getInt("idPessoa"), resultProduto.getInt("idProduto")));
-            } catch(SQLException e) {
-                e.printStackTrace();
-            }
-        }
+        System.out.println(pedido.getSql(pedido.getCliente().getIdPessoa(), pedido.getFuncionario().getIdPessoa(), pedido.getProduto().getIdProduto()));
+        boolean retorno = this.bd.insertSQL(pedido.getSql(pedido.getCliente().getIdPessoa(), pedido.getFuncionario().getIdPessoa(), pedido.getProduto().getIdProduto()));
         this.bd.fecharConexao();
+        return retorno;       
     }
     
     public void removerPedido(Pedido pedido) {
         this.bd.criarConexao();
-        this.bd.deleteSQL("DELETE * FROM pedido WHERE pedido.numPedido = " + pedido.getNumPedido());
+        this.bd.deleteSQL("DELETE FROM pedido WHERE numPedido = '" + pedido.getNumPedido() + "'");
         this.bd.fecharConexao();
     }
     
     public void removerPedido(Cliente cliente) {
         this.bd.criarConexao();
-        this.bd.deleteSQL("DELETE * FROM pedido WHERE Cliente_idPessoa = " + cliente.getId());
+        this.bd.deleteSQL("DELETE FROM pedido WHERE Cliente_idPessoa = '" + cliente.getId() + "'");
         this.bd.fecharConexao();
     }
 }

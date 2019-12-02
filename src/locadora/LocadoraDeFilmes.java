@@ -5,6 +5,9 @@
  */
 package locadora;
 
+import controller.CadastroClientes;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author 05213516181
@@ -14,6 +17,8 @@ public class LocadoraDeFilmes extends javax.swing.JFrame {
     /**
      * Creates new form LocadoraDeFilmes
      */
+    
+    CadastroClientes clientes = new CadastroClientes();
     public LocadoraDeFilmes() {
         initComponents();
     }
@@ -29,89 +34,153 @@ public class LocadoraDeFilmes extends javax.swing.JFrame {
 
         jMenu1 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jInternalFrame1 = new javax.swing.JInternalFrame();
+        jButtonNovo = new javax.swing.JButton();
+        jButtonBuscarClientes = new javax.swing.JButton();
+        jButtonNovoProduto = new javax.swing.JButton();
+        jButtonBuscarFuncionarios = new javax.swing.JButton();
+        jButtonListarPedidos = new javax.swing.JButton();
+        jButtonNovoPedido = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
         jMenuItem3.setText("jMenuItem3");
 
+        jInternalFrame1.setVisible(true);
+
+        javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
+        jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
+        jInternalFrame1Layout.setHorizontalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jInternalFrame1Layout.setVerticalGroup(
+            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 4, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Locadora Alegria");
 
-        jMenu2.setText("Cadastrar Novos");
-
-        jMenuItem1.setText("Clientes");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonNovo.setText("Cadastrar Novo");
+        jButtonNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jButtonNovoActionPerformed(evt);
             }
         });
-        jMenu2.add(jMenuItem1);
 
-        jMenuItem2.setText("Funcionários");
-        jMenu2.add(jMenuItem2);
-
-        jMenuItem4.setText("Locações");
-        jMenu2.add(jMenuItem4);
-
-        jMenuItem5.setText("Filmes");
-        jMenu2.add(jMenuItem5);
-
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Buscar por");
-
-        jMenuItem6.setText("Clientes");
-        jMenu3.add(jMenuItem6);
-
-        jMenuItem7.setText("Funcionários");
-        jMenu3.add(jMenuItem7);
-
-        jMenuItem8.setText("Locações");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBuscarClientes.setText("Buscar Clientes");
+        jButtonBuscarClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                jButtonBuscarClientesActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem8);
 
-        jMenuItem9.setText("Filmes");
-        jMenu3.add(jMenuItem9);
+        jButtonNovoProduto.setText("Cadastrar Filme");
+        jButtonNovoProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoProdutoActionPerformed(evt);
+            }
+        });
 
-        jMenuBar1.add(jMenu3);
+        jButtonBuscarFuncionarios.setText("Buscar Funcionários");
+        jButtonBuscarFuncionarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarFuncionariosActionPerformed(evt);
+            }
+        });
 
+        jButtonListarPedidos.setText("Listar Pedidos");
+        jButtonListarPedidos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonListarPedidosActionPerformed(evt);
+            }
+        });
+
+        jButtonNovoPedido.setText("Cadastrar Pedido");
+        jButtonNovoPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoPedidoActionPerformed(evt);
+            }
+        });
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonBuscarFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                    .addComponent(jButtonBuscarClientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonNovoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(66, 66, 66))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonListarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNovoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBuscarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBuscarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonListarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+        CadastroPessoa cadastroPessoa = new CadastroPessoa();
+        cadastroPessoa.setVisible(true);
+    }//GEN-LAST:event_jButtonNovoActionPerformed
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void jButtonBuscarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarClientesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+        BuscarClientes buscarClientes = new BuscarClientes();
+        buscarClientes.setVisible(true);
+    }//GEN-LAST:event_jButtonBuscarClientesActionPerformed
+
+    private void jButtonNovoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoProdutoActionPerformed
+        // TODO add your handling code here:
+        CadastrarProduto cadastrarProduto = new CadastrarProduto();
+        cadastrarProduto.setVisible(true);
+    }//GEN-LAST:event_jButtonNovoProdutoActionPerformed
+
+    private void jButtonBuscarFuncionariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarFuncionariosActionPerformed
+        // TODO add your handling code here:
+        BuscarFuncionarios buscarFuncionarios = new BuscarFuncionarios();
+        buscarFuncionarios.setVisible(true);
+    }//GEN-LAST:event_jButtonBuscarFuncionariosActionPerformed
+
+    private void jButtonListarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarPedidosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonListarPedidosActionPerformed
+
+    private void jButtonNovoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoPedidoActionPerformed
+        // TODO add your handling code here:
+        CadastrarPedido cadastrarPedido = new CadastrarPedido();
+        cadastrarPedido.setVisible(true);
+    }//GEN-LAST:event_jButtonNovoPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,18 +218,15 @@ public class LocadoraDeFilmes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBuscarClientes;
+    private javax.swing.JButton jButtonBuscarFuncionarios;
+    private javax.swing.JButton jButtonListarPedidos;
+    private javax.swing.JButton jButtonNovo;
+    private javax.swing.JButton jButtonNovoPedido;
+    private javax.swing.JButton jButtonNovoProduto;
+    private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
 }

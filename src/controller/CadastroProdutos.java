@@ -22,11 +22,24 @@ public class CadastroProdutos {
         this.listaProdutos = new ArrayList<Produto>();
         this.bd = bd;
     }
+    
+    public CadastroProdutos() {
+        this.listaProdutos = new ArrayList<Produto>();
+        this.bd = new BancoDados();
+    }
 
     public void adicionarProduto(Produto produto) {
         this.bd.criarConexao();
         this.bd.insertSQL(produto.getSql());
         this.bd.fecharConexao();
+    }
+
+    public ArrayList<Produto> getListaProdutos() {
+        return this.listaProdutos;
+    }
+
+    public void setListaProdutos(ArrayList<Produto> listaProdutos) {
+        this.listaProdutos = listaProdutos;
     }
     
     public void adicionarProduto(String nome, String categoria) {
@@ -38,8 +51,8 @@ public class CadastroProdutos {
     
     public ArrayList<Produto> removerProduto(String nome) {
         this.bd.criarConexao();
-        this.bd.deleteSQL("DELETE * FROM produto WHERE nome = " + nome);
-        ResultSet results = this.bd.querySQL("SELECT * FROM produto WHERE nome = " + nome);
+        this.bd.deleteSQL("DELETE FROM produto WHERE nome = '" + nome + "'");
+        ResultSet results = this.bd.querySQL("SELECT * FROM produto WHERE nome = '" + nome + "'");
         if (results != null) {
             try {
                 while(results.next()) {
@@ -55,17 +68,17 @@ public class CadastroProdutos {
     
     public void removerProduto(Produto produto) {
         this.bd.criarConexao();
-        this.bd.deleteSQL("DELETE * FROM pessoa WHERE nome = " + produto.getNome());
+        this.bd.deleteSQL("DELETE FROM pessoa WHERE nome = '" + produto.getNome() + "'");
         this.bd.fecharConexao();
     }
     
     public ArrayList<Produto> buscar(String nome) {
         this.bd.criarConexao();
-        ResultSet resultados = this.bd.querySQL("SELECT * FROM produto WHERE nome = " + nome);
+        ResultSet resultados = this.bd.querySQL("SELECT * FROM produto WHERE nome = '" + nome + "'");
         if (resultados != null) {
             try {
                 while(resultados.next()) {
-                    this.listaProdutos.add(new model.Produto(resultados.getString("nome"), resultados.getString("categoria")));
+                    this.listaProdutos.add(new model.Produto(resultados.getString("nome"), resultados.getString("categoria"), resultados.getInt("idProduto")));
                 }
             } catch(SQLException e) {
                 e.printStackTrace();

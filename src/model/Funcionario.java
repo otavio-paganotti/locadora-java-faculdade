@@ -12,13 +12,30 @@ package model;
 public class Funcionario extends Pessoa {
     private int numCarteira;
     private int numTrabalhos;
-    private boolean disponivel;
+    private int disponivel;
+    private int idPessoa;
 
-    public Funcionario(int numCarteira, int numTrabalhos, boolean disponivel, String nome, int cpf, String telefone) {
+    public Funcionario(int numCarteira, int numTrabalhos, int disponivel, String nome, String cpf, String telefone) {
         super(nome, cpf, telefone);
         this.numCarteira = numCarteira;
         this.numTrabalhos = numTrabalhos;
         this.disponivel = disponivel;
+    }
+    
+    public Funcionario(int numCarteira, int numTrabalhos, int disponivel, String nome, String cpf, String telefone, int idPessoa) {
+        super(nome, cpf, telefone);
+        this.numCarteira = numCarteira;
+        this.numTrabalhos = numTrabalhos;
+        this.disponivel = disponivel;
+        this.idPessoa = idPessoa;
+    }
+
+    public int getIdPessoa() {
+        return idPessoa;
+    }
+
+    public void setIdPessoa(int idPessoa) {
+        this.idPessoa = idPessoa;
     }
 
     public int getNumCarteira() {
@@ -37,37 +54,34 @@ public class Funcionario extends Pessoa {
         this.numTrabalhos = numTrabalhos;
     }
 
-    public boolean isDisponivel() {
+    public int isDisponivel() {
         return disponivel;
     }
 
-    public void setDisponivel(boolean disponivel) {
+    public void setDisponivel(int disponivel) {
         this.disponivel = disponivel;
     }
     
     public void comecarTrabalho() {
-        this.disponivel = true;
+        this.disponivel = 1;
     }
     
     public void encerrarTrabalho() {
-        this.disponivel = false;
+        this.disponivel = 0;
     }
     
     public String getSql() {
-        return "INSERT INTO pessoa (numCarteira, numTrabalhos, disponivel, nome, cpf, telefone) VALUES ("
+        return "INSERT INTO pessoa (numCarteira,numTrabalhos,disponivel,nome,cpf,telefone,tipo) VALUES ("
                 + "'" + this.numCarteira + "',"
-                + this.numTrabalhos + ","
+                + "'" + this.numTrabalhos + "',"
                 + "'" + this.disponivel + "',"
                 + "'" + this.getNome() + "',"
                 + "'" + this.getCpf() + "',"
                 + "'" + this.getTelefone() + "',"
+                + "'" + 2 + "'"
                 + ")";
     }
     
-    public String getId() {
-        return "SELECT * FROM funcinario WHERE numCarteira = " + this.numCarteira;
-    }
-
     @Override
     public void setPessoa(Pessoa p) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

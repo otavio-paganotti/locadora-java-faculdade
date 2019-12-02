@@ -12,10 +12,25 @@ package model;
 public class Produto {
     private String nome;
     private String categoria;
+    private int idProduto;
 
     public Produto(String nome, String categoria) {
         this.nome = nome;
         this.categoria = categoria;
+    }
+    
+    public Produto(String nome, String categoria, int idProduto) {
+        this.nome = nome;
+        this.categoria = categoria;
+        this.idProduto = idProduto;
+    }
+
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
     }
 
     public String getNome() {
@@ -42,13 +57,13 @@ public class Produto {
     }
     
     public String getSql() {
-        return "INSET INTO produto (nome, categoria) VALUES ("
+        return "INSERT INTO produto (nome,categoria) VALUES ("
                 + "'" + this.nome + "',"
                 + "'" + this.categoria + "'"
                 + ")";
     }
     
     public String getId() {
-        return "SELECT * FROM produto WHERE nome = " + this.nome;
+        return "SELECT * FROM produto WHERE nome = '" + this.nome + "'";
     }
 }

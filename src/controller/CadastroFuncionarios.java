@@ -23,27 +23,39 @@ public class CadastroFuncionarios {
         this.bd = bd;
     }
     
+    public CadastroFuncionarios() {
+        this.listaFuncionarios = new ArrayList<Funcionario>();
+        this.bd = new BancoDados();
+    }
     public void adicionarFuncionario(Funcionario func) {
         this.bd.criarConexao();
         this.bd.insertSQL(func.getSql());
         this.bd.fecharConexao();
     }
+
+    public ArrayList<Funcionario> getListaFuncionarios() {
+        return this.listaFuncionarios;
+    }
+
+    public void setListaFuncionarios(ArrayList<Funcionario> listaFuncionarios) {
+        this.listaFuncionarios = listaFuncionarios;
+    }
     
-    public void adicionarFuncionario(int numCarteira, String nome, int cpf, String telefone, String certificacao) {
+    public void adicionarFuncionario(int numCarteira, String nome, String cpf, String telefone, String certificacao, int disponivel) {
         this.bd.criarConexao();
-        Funcionario func = new Funcionario(numCarteira, 0, true, nome, cpf, telefone);
+        Funcionario func = new Funcionario(numCarteira, 0, disponivel, nome, cpf, telefone);
         this.bd.insertSQL(func.getSql());
         this.bd.fecharConexao();
     }
     
     public ArrayList<Funcionario> removerFuncionario(String nome) {
         this.bd.criarConexao();
-        this.bd.deleteSQL("DELETE * FROM pessoa WHERE nome = " + nome);
+        this.bd.deleteSQL("DELETE FROM pessoa WHERE nome = '" + nome + "' AND tipo = '2'");
         ResultSet results = this.bd.querySQL("SELECT * FROM pessoa WHERE nome = " + nome);
         if (results != null) {
             try {
                 while(results.next()) {
-                    this.listaFuncionarios.add(new model.Funcionario(results.getInt("numCarteira"), results.getInt("numTrabalhos"), results.getBoolean("disponivel"), results.getString("nome"), results.getInt("cpf"), results.getString("telefone")));
+                    this.listaFuncionarios.add(new model.Funcionario(results.getInt("numCarteira"), results.getInt("numTrabalhos"), results.getInt("disponivel"), results.getString("nome"), results.getString("cpf"), results.getString("telefone")));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -55,12 +67,12 @@ public class CadastroFuncionarios {
     
     public ArrayList<Funcionario> removerFuncionario(int numCarteira) {
         this.bd.criarConexao();
-        this.bd.deleteSQL("DELETE * FROM pessoa WHERE numCarteira = " + numCarteira);
+        this.bd.deleteSQL("DELETE FROM pessoa WHERE numCarteira = '" + numCarteira + "' AND tipo = '2'");
         ResultSet results = this.bd.querySQL("SELECT * FROM pessoa WHERE numCarteira = " + numCarteira);
         if (results != null) {
             try {
                 while(results.next()) {
-                    this.listaFuncionarios.add(new Funcionario(results.getInt("numCarteira"), results.getInt("numTrabalhos"), results.getBoolean("disponivel"), results.getString("nome"), results.getInt("cpf"), results.getString("telefone")));
+                    this.listaFuncionarios.add(new Funcionario(results.getInt("numCarteira"), results.getInt("numTrabalhos"), results.getInt("disponivel"), results.getString("nome"), results.getString("cpf"), results.getString("telefone")));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -72,11 +84,11 @@ public class CadastroFuncionarios {
     
     public ArrayList<Funcionario> buscar(String nome) {
         this.bd.criarConexao();
-        ResultSet resultados = this.bd.querySQL("SELET * FROM pessoa WHERE nome = " + nome);
+        ResultSet resultados = this.bd.querySQL("SELECT * FROM pessoa WHERE nome = '" + nome + "' AND tipo = '2'");
         if (resultados != null) {
             try {
                 while(resultados.next()) {
-                    this.listaFuncionarios.add(new model.Funcionario(resultados.getInt("numCarteira"), resultados.getInt("numTrabalhos"), resultados.getBoolean("disponivel"), resultados.getString("nome"), resultados.getInt("cpf"), resultados.getString("telefone")));
+                    this.listaFuncionarios.add(new model.Funcionario(resultados.getInt("numCarteira"), resultados.getInt("numTrabalhos"), resultados.getInt("disponivel"), resultados.getString("nome"), resultados.getString("cpf"), resultados.getString("telefone"), resultados.getInt("idPessoa")));
                 }
             } catch(SQLException e) {
                 e.printStackTrace();
@@ -88,11 +100,11 @@ public class CadastroFuncionarios {
     
     public ArrayList<Funcionario> buscar(int numCarteira) {
         this.bd.criarConexao();
-        ResultSet resultados = this.bd.querySQL("SELECT * FROM pessoa WHERE numCarteira = " + numCarteira);
+        ResultSet resultados = this.bd.querySQL("SELECT * FROM pessoa WHERE numCarteira = '" + numCarteira + "' AND tipo = '2'");
         if (resultados != null) {
             try {
                 while(resultados.next()) {
-                    this.listaFuncionarios.add(new model.Funcionario(resultados.getInt("numCarteira"), resultados.getInt("numTrabalhos"), resultados.getBoolean("disponivel"), resultados.getString("nome"), resultados.getInt("cpf"), resultados.getString("telefone")));
+                    this.listaFuncionarios.add(new model.Funcionario(resultados.getInt("numCarteira"), resultados.getInt("numTrabalhos"), resultados.getInt("disponivel"), resultados.getString("nome"), resultados.getString("cpf"), resultados.getString("telefone"), resultados.getInt("idPessoa")));
                 }
             } catch (SQLException e) {
                 e.printStackTrace();

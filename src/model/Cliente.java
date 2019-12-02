@@ -11,10 +11,25 @@ package model;
  */
 public class Cliente extends Pessoa {
     private String endereco;
+    private int idPessoa;
 
-    public Cliente(String endereco, String nome, int cpf, String telefone) {
+    public Cliente(String endereco, String nome, String cpf, String telefone) {
         super(nome, cpf, telefone);
         this.endereco = endereco;
+    }
+    
+     public Cliente(String endereco, String nome, String cpf, String telefone, int idPessoa) {
+        super(nome, cpf, telefone);
+        this.endereco = endereco;
+        this.idPessoa = idPessoa;
+    }
+
+    public int getIdPessoa() {
+        return idPessoa;
+    }
+
+    public void setIdPessoa(int idPessoa) {
+        this.idPessoa = idPessoa;
     }
 
     public String getEndereco() {
@@ -35,16 +50,17 @@ public class Cliente extends Pessoa {
     }
     
     public String getSql() {
-        return "INSERT INTO cliente (endereco,nome,cpf,telefone) VALUES ("
+        return "INSERT INTO pessoa (endereco,nome,cpf,telefone,tipo) VALUES ("
                 + "'" + this.endereco + "',"
-                + this.getNome() + ","
+                + "'" + this.getNome() + "',"
                 + "'" + this.getCpf() + "',"
-                + "'" + this.getTelefone()
-                + ")";
+                + "'" + this.getTelefone() + "',"
+                + "'" + 1
+                + "')";
     }
     
     public String getId() {
-        return "SELECT * FROM cliente WHERE nome = " + this.getNome();
+        return "SELECT * FROM pessoa WHERE nome = " + this.getNome();
     }
 
     @Override

@@ -15,13 +15,21 @@ public class Pedido {
     private Funcionario funcionario;
     private int numPedido;
     private Produto produto;
+    private int idPedido;
 
-    public Pedido(Cliente cliente, String data, Funcionario funcionario, int numPedido, Produto produto) {
+    public Pedido(Cliente cliente, String data, Funcionario funcionario, Produto produto) {
         this.cliente = cliente;
         this.data = data;
         this.funcionario = funcionario;
-        this.numPedido = numPedido;
         this.produto = produto;
+    }
+    
+    public Pedido(Cliente cliente, String data, Funcionario funcionario, Produto produto, int idPedido) {
+        this.cliente = cliente;
+        this.data = data;
+        this.funcionario = funcionario;
+        this.produto = produto;
+        this.idPedido = idPedido;
     }
 
     public Cliente getCliente() {
@@ -68,7 +76,7 @@ public class Pedido {
         this.cliente.setNome(nome);
     }
     
-    public void incluirCliente(int cpf) {
+    public void incluirClienteCpf(String cpf) {
         this.cliente.setCpf(cpf);
     }
     
@@ -76,7 +84,7 @@ public class Pedido {
         this.funcionario.setNome(nome);
     }
     
-    public void incluirFuncionario(int cpf) {
+    public void incluirFuncionarioCpf(String cpf) {
         this.funcionario.setCpf(cpf);
     }
     
@@ -85,7 +93,7 @@ public class Pedido {
     }
     
     public String getSql(int clienteId, int funcionarioId, int produtoId) {
-        return "INSET INTO pedido (data, Cliente_idPessoa, Funcionario_idPessoa, Produto_idProduto) VALUES ("
+        return "INSERT INTO pedido (data,Cliente_idPessoa,Funcionario_idPessoa,Produto_idProduto) VALUES ("
                 + "'" + this.data + "',"
                 + "'" + clienteId + "',"
                 + "'" + funcionarioId + "',"
