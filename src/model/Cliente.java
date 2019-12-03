@@ -60,7 +60,7 @@ public class Cliente extends Pessoa {
     }
     
     public String getId() {
-        return "SELECT * FROM pessoa WHERE nome = " + this.getNome();
+        return "SELECT * FROM pessoa WHERE nome = '" + this.getNome() + "'";
     }
 
     @Override

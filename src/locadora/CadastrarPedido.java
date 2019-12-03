@@ -30,6 +30,9 @@ public class CadastrarPedido extends javax.swing.JFrame {
         this.jLabelFoundFuncionario.setVisible(false);
         this.jLabelFoundProduto.setVisible(false);
         this.jLabelStatus.setVisible(false);
+        this.jLabelPedidoRemovido.setVisible(false);
+        this.jButtonRemover.setVisible(false);
+        this.jButtonNovoPedido.setVisible(false);
     }
 
     /**
@@ -57,6 +60,9 @@ public class CadastrarPedido extends javax.swing.JFrame {
         jLabelFoundFuncionario = new javax.swing.JLabel();
         jLabelFoundProduto = new javax.swing.JLabel();
         jLabelStatus = new javax.swing.JLabel();
+        jButtonRemover = new javax.swing.JButton();
+        jLabelPedidoRemovido = new javax.swing.JLabel();
+        jButtonNovoPedido = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -104,23 +110,35 @@ public class CadastrarPedido extends javax.swing.JFrame {
 
         jLabelStatus.setText("Preencha os Campos!");
 
+        jButtonRemover.setText("Remover");
+        jButtonRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoverActionPerformed(evt);
+            }
+        });
+
+        jLabelPedidoRemovido.setText("Pedido Removido!");
+
+        jButtonNovoPedido.setText("Novo Pedido");
+        jButtonNovoPedido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNovoPedidoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelData)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTextFieldProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextFieldData)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonRealizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelStatus))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,8 +156,20 @@ public class CadastrarPedido extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelFoundProduto)
                             .addComponent(jLabelFoundFuncionario)
-                            .addComponent(jButtonFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(145, Short.MAX_VALUE))
+                            .addComponent(jButtonFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelPedidoRemovido))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonRealizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabelStatus)))
+                        .addGap(29, 29, 29)
+                        .addComponent(jButtonNovoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,12 +201,21 @@ public class CadastrarPedido extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelData)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonRealizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelStatus))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonRealizarPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelStatus))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonRemover, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                            .addComponent(jLabelPedidoRemovido)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(73, 73, 73)
+                        .addComponent(jButtonNovoPedido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -225,7 +264,9 @@ public class CadastrarPedido extends javax.swing.JFrame {
             if (pedido.adicionarPedido(ped)) {
                 this.jLabelStatus.setVisible(true);
                 this.jLabelStatus.setText("Salvo com sucesso!");
-                this.setVisible(false);
+                this.jButtonRemover.setVisible(true);
+                this.jButtonNovoPedido.setVisible(true);
+//                this.setVisible(false);
             } else {
                 this.jLabelStatus.setVisible(true);
                 this.jLabelStatus.setText("Houve um erro na gravação do Pedido");
@@ -234,6 +275,36 @@ public class CadastrarPedido extends javax.swing.JFrame {
             this.jLabelStatus.setVisible(true);
         }
     }//GEN-LAST:event_jButtonRealizarPedidoActionPerformed
+
+    private void jButtonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoverActionPerformed
+        // TODO add your handling code here:
+        pedido.removerPedido(cliente.getListaClientes().get(0));
+        this.jButtonRealizarPedido.setVisible(false);
+        this.jLabelStatus.setVisible(false);
+        this.jLabelPedidoRemovido.setVisible(true);
+        this.jButtonNovoPedido.setVisible(true);
+    }//GEN-LAST:event_jButtonRemoverActionPerformed
+
+    private void jButtonNovoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoPedidoActionPerformed
+        // TODO add your handling code here:
+        this.jLabelPedidoRemovido.setVisible(false);
+        this.jButtonRealizarPedido.setVisible(false);
+        this.jTextFieldCliente.setText("");
+        this.jTextFieldFuncionario.setText("");
+        this.jTextFieldProduto.setText("");
+        this.jTextFieldData.setText("");
+        produto = new CadastroProdutos();
+        cliente = new CadastroClientes();
+        funcionario = new CadastroFuncionarios();
+        pedido = new CadastroPedidos();
+        this.jButtonNovoPedido.setVisible(false);
+        this.jButtonRemover.setVisible(false);
+        this.jButtonRealizarPedido.setVisible(true);
+        this.jLabelStatus.setVisible(false);
+        this.jLabelFoundCliente.setVisible(false);
+        this.jLabelFoundFuncionario.setVisible(false);
+        this.jLabelFoundProduto.setVisible(false);
+    }//GEN-LAST:event_jButtonNovoPedidoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -257,14 +328,17 @@ public class CadastrarPedido extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCliente;
     private javax.swing.JButton jButtonFuncionario;
+    private javax.swing.JButton jButtonNovoPedido;
     private javax.swing.JButton jButtonProduto;
     private javax.swing.JButton jButtonRealizarPedido;
+    private javax.swing.JButton jButtonRemover;
     private javax.swing.JLabel jLabelCliente;
     private javax.swing.JLabel jLabelData;
     private javax.swing.JLabel jLabelFoundCliente;
     private javax.swing.JLabel jLabelFoundFuncionario;
     private javax.swing.JLabel jLabelFoundProduto;
     private javax.swing.JLabel jLabelFuncionario;
+    private javax.swing.JLabel jLabelPedidoRemovido;
     private javax.swing.JLabel jLabelProduto;
     private javax.swing.JLabel jLabelStatus;
     private javax.swing.JTextField jTextFieldCliente;

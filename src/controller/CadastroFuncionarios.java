@@ -51,7 +51,7 @@ public class CadastroFuncionarios {
     public ArrayList<Funcionario> removerFuncionario(String nome) {
         this.bd.criarConexao();
         this.bd.deleteSQL("DELETE FROM pessoa WHERE nome = '" + nome + "' AND tipo = '2'");
-        ResultSet results = this.bd.querySQL("SELECT * FROM pessoa WHERE nome = " + nome);
+        ResultSet results = this.bd.querySQL("SELECT * FROM pessoa WHERE nome = '" + nome + "'");
         if (results != null) {
             try {
                 while(results.next()) {

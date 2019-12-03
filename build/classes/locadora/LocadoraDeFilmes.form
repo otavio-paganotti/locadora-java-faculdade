@@ -75,10 +75,7 @@
                       <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButtonNovoProduto" min="-2" pref="179" max="-2" attributes="0"/>
-                          <Component id="jButtonListarPedidos" min="-2" pref="179" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jButtonNovoProduto" min="-2" pref="179" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -99,10 +96,7 @@
                   <Component id="jButtonNovoProduto" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButtonBuscarFuncionarios" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
-                  <Component id="jButtonListarPedidos" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jButtonBuscarFuncionarios" min="-2" pref="54" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -139,14 +133,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonBuscarFuncionariosActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButtonListarPedidos">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Listar Pedidos"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonListarPedidosActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonNovoPedido">

@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import model.Cliente;
 import model.Pedido;
+import model.Produto;
 
 /**
  *
@@ -31,7 +32,6 @@ public class CadastroPedidos {
     
     public boolean adicionarPedido(Pedido pedido) {
         this.bd.criarConexao();
-        System.out.println(pedido.getSql(pedido.getCliente().getIdPessoa(), pedido.getFuncionario().getIdPessoa(), pedido.getProduto().getIdProduto()));
         boolean retorno = this.bd.insertSQL(pedido.getSql(pedido.getCliente().getIdPessoa(), pedido.getFuncionario().getIdPessoa(), pedido.getProduto().getIdProduto()));
         this.bd.fecharConexao();
         return retorno;       
@@ -45,7 +45,7 @@ public class CadastroPedidos {
     
     public void removerPedido(Cliente cliente) {
         this.bd.criarConexao();
-        this.bd.deleteSQL("DELETE FROM pedido WHERE Cliente_idPessoa = '" + cliente.getId() + "'");
+        this.bd.deleteSQL("DELETE FROM pedido WHERE Cliente_idPessoa = '" + cliente.getIdPessoa() + "'");
         this.bd.fecharConexao();
     }
 }

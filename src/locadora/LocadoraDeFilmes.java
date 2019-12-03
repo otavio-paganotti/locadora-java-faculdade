@@ -39,7 +39,6 @@ public class LocadoraDeFilmes extends javax.swing.JFrame {
         jButtonBuscarClientes = new javax.swing.JButton();
         jButtonNovoProduto = new javax.swing.JButton();
         jButtonBuscarFuncionarios = new javax.swing.JButton();
-        jButtonListarPedidos = new javax.swing.JButton();
         jButtonNovoPedido = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
 
@@ -91,13 +90,6 @@ public class LocadoraDeFilmes extends javax.swing.JFrame {
             }
         });
 
-        jButtonListarPedidos.setText("Listar Pedidos");
-        jButtonListarPedidos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonListarPedidosActionPerformed(evt);
-            }
-        });
-
         jButtonNovoPedido.setText("Cadastrar Pedido");
         jButtonNovoPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,9 +114,7 @@ public class LocadoraDeFilmes extends javax.swing.JFrame {
                         .addComponent(jButtonNovoPedido, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(66, 66, 66))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonListarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         layout.setVerticalGroup(
@@ -139,9 +129,7 @@ public class LocadoraDeFilmes extends javax.swing.JFrame {
                     .addComponent(jButtonBuscarClientes, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonNovoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonBuscarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonListarPedidos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButtonBuscarFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43))
         );
 
@@ -171,10 +159,6 @@ public class LocadoraDeFilmes extends javax.swing.JFrame {
         BuscarFuncionarios buscarFuncionarios = new BuscarFuncionarios();
         buscarFuncionarios.setVisible(true);
     }//GEN-LAST:event_jButtonBuscarFuncionariosActionPerformed
-
-    private void jButtonListarPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonListarPedidosActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonListarPedidosActionPerformed
 
     private void jButtonNovoPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoPedidoActionPerformed
         // TODO add your handling code here:
@@ -220,7 +204,6 @@ public class LocadoraDeFilmes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBuscarClientes;
     private javax.swing.JButton jButtonBuscarFuncionarios;
-    private javax.swing.JButton jButtonListarPedidos;
     private javax.swing.JButton jButtonNovo;
     private javax.swing.JButton jButtonNovoPedido;
     private javax.swing.JButton jButtonNovoProduto;

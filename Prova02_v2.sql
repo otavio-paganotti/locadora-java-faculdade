@@ -6,9 +6,9 @@ USE `Prova02_v2` ;
 DROP TABLE IF EXISTS `Prova02_v2`.`Pessoa` ;
 
 CREATE TABLE IF NOT EXISTS `Prova02_v2`.`Pessoa` (
-  `idPessoa` INT NOT NULL AUTO_INCREMENT,
+  `idPessoa` INT NOT NULL,
   `nome` VARCHAR(80) NOT NULL,
-  `cpf` VARCHAR(25) NOT NULL,
+  `cpf` INT NOT NULL,
   `telefone` VARCHAR(16) NOT NULL,
   `tipo` INT NOT NULL,
   `endereco` VARCHAR(100) NULL,
@@ -22,7 +22,7 @@ CREATE TABLE IF NOT EXISTS `Prova02_v2`.`Pessoa` (
 DROP TABLE IF EXISTS `Prova02_v2`.`Produto` ;
 
 CREATE TABLE IF NOT EXISTS `Prova02_v2`.`Produto` (
-  `idProduto` INT NOT NULL AUTO_INCREMENT,
+  `idProduto` INT NOT NULL,
   `nome` VARCHAR(80) NOT NULL,
   `categoria` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idProduto`),
@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `Prova02_v2`.`Produto` (
 DROP TABLE IF EXISTS `Prova02_v2`.`Pedido` ;
 
 CREATE TABLE IF NOT EXISTS `Prova02_v2`.`Pedido` (
-  `idPedido` INT NOT NULL AUTO_INCREMENT,
+  `idPedido` INT NOT NULL,
   `data` VARCHAR(10) NOT NULL,
   `Cliente_idPessoa` INT NOT NULL,
   `Funcionario_idPessoa` INT NOT NULL,
